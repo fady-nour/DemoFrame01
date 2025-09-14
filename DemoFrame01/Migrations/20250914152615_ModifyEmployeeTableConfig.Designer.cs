@@ -3,6 +3,7 @@ using DemoFrame01.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoFrame01.Migrations
 {
     [DbContext(typeof(ComponeyDbcontext))]
-    partial class ComponeyDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20250914152615_ModifyEmployeeTableConfig")]
+    partial class ModifyEmployeeTableConfig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

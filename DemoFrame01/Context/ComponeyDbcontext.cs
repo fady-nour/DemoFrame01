@@ -21,14 +21,21 @@ namespace DemoFrame01.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //conect bitween c# and sql
-           // optionsBuilder.UseSqlServer("Data Source = . ; Initial catalog = CompanyRoute; Integrated Security =true");
+            //optionsBuilder.UseSqlServer("Data Source = . ; Initial catalog = CompanyRoute; Integrated Security =true");
             optionsBuilder.UseSqlServer("Server = . ;Database = CompanyRoute; Trusted_Connection =true;TrustServerCertificate =  true");
 
 
 
         }
-        //public DbSet<Employee> Employees { get; set; }
-        //public DbSet<User> UserTable { get; set; }
+        #region apply floating apis
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>().HasOne(E => E.Manager).WithOne(E => E.ManagedDep)
+               .HasForeignKey<Department>(E=>E.ManagerId).OnDelete(DeleteBehavior.NoAction) ;
+        }
+        #endregion
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<User> UserTable { get; set; }
         public DbSet<Student> students { get; set; }
         public DbSet<Department> departments { get; set; }
         public DbSet<Instructor> instructors { get; set; }
