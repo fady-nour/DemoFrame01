@@ -64,7 +64,84 @@ namespace DemoFrame01
             #endregion
             #endregion
 
-            using ComponeyDbcontext dbcontext = new ComponeyDbcontext();
+            //using ComponeyDbcontext dbcontext = new ComponeyDbcontext();
+            #endregion
+            #region Session 2
+            #region Demo
+            #region Relation between classes
+            /* you can make relation between tow table in three way
+             * 1.navigation
+             * 2.fluent apis
+             * 3.by convention
+             * 
+             * 
+             * */
+            #endregion
+
+            #region Query object model
+            using ComponeyDbcontext dp = new ComponeyDbcontext();//openconnection
+            #region Add new record
+            //to add data in database
+            //connect with database
+
+            //Employee emp01 = new Employee()
+            //{
+            //    Name = "Fady",
+            //    Salary = 10000,
+            //    Age = 23
+            //};
+            ////by default auto track
+            //dp.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
+            //Console.WriteLine(dp.Entry<Employee>(emp01).State);
+            //dp.Add(emp01);
+            //dp.Set<Employee>().Add(emp01);
+            //dp.Employees.Add(emp01);
+            //Console.WriteLine(dp.Entry<Employee>(emp01).State);
+            //dp.SaveChanges();
+
+            #endregion
+
+            #region get data from table
+            //    var emp01 = dp.Employees.Where(P => P.Id == 1).FirstOrDefault();
+            //Console.WriteLine(emp01.Id);
+
+            #endregion
+
+            #region update data in table
+            //var emp01 = dp.Employees.Where(P => P.Id == 1).FirstOrDefault();
+            //if (emp01 != null) 
+            //{
+            //    emp01.Name = "ALI";
+            //    Console.WriteLine(dp.Entry<Employee>(emp01).State);
+            //    dp.SaveChanges();
+            //}
+
+
+            #endregion
+            #region delete data in table
+            //var emp01 = dp.Employees.Where(P => P.Id == 1).FirstOrDefault();
+            //if (emp01 != null) 
+            //{
+            //dp.Employees.Remove(emp01);
+            //    dp.Remove(emp01);
+            //    Console.WriteLine(dp.Entry<Employee>(emp01).State);
+            //    dp.SaveChanges();
+            //}
+
+
+
+
+            #endregion
+
+            #endregion
+
+            #region one to one total to total
+
+
+            #endregion
+            #endregion
+            #endregion
+
         }
     }
 }
