@@ -1,15 +1,17 @@
 ﻿using DemoFrame01.Context;
+using DemoFrame01.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoFrame01
 {
-    internal class Program
-    {
+
+ internal class program   {
         static void Main(string[] args)
         {
+            #region Session 1
             #region demo
 
-           
+
             #region Entitty frame work core
             /*
              ORM => object Rational mapper 
@@ -141,7 +143,6 @@ namespace DemoFrame01
             #endregion
             #endregion
             #endregion
-
 
         }
     }

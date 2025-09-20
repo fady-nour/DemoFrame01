@@ -9,7 +9,7 @@ namespace DemoFrame01.Assignment01
 {
     internal class Course_Inst
     {
-        [Key]
+         [Key]
         public int inst_ID { get; set; }
         public int Course_ID { get; set; }
         public int evaluate { get; set; }
