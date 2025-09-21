@@ -21,6 +21,7 @@ namespace DemoFrame01.Models
         //public Employee Manager { get; set; } = null;
         [ForeignKey(nameof(ManagedDep))]
         public int ManagerId { get; set; }
-        public Employee ManagedDep { get; set; }
+        public virtual Employee ManagedDep { get; set; }
+        public virtual ICollection<Employee> Employees { get; set;  } = new HashSet<Employee>();
     }
 }
