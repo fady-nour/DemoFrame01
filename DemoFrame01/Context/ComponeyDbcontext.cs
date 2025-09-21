@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DemoFrame01.Assignment01;
 using DemoFrame01.Models;
 using Microsoft.EntityFrameworkCore;
+using Student = DemoFrame01.Models.Student;
 namespace DemoFrame01.Context
 {
     internal class ComponeyDbcontext : DbContext
@@ -22,7 +23,8 @@ namespace DemoFrame01.Context
         {
             //conect bitween c# and sql
             //optionsBuilder.UseSqlServer("Data Source = . ; Initial catalog = CompanyRoute; Integrated Security =true");
-            optionsBuilder.UseSqlServer("Server = . ;Database = CompanyRoute; Trusted_Connection =true;TrustServerCertificate =  true");
+            optionsBuilder.UseSqlServer("Server = . ;Database = CompanyRoute; Trusted_Connection =true;TrustServerCertificate =  true")
+                .UseLazyLoadingProxies();
 
 
 

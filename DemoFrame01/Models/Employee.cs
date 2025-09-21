@@ -31,9 +31,11 @@ namespace DemoFrame01.Models
         //public int ManagerDeptId { get; set; }
         //public Department DepManager { get; set; } = null;
 
-        public Department Manager { get; set; }
+        public virtual Department Manager { get; set; }
         //one to one total total
     public Address EmpAddress { get; set; }
+
+
 
     }
 }

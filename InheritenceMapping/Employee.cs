@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DemoFrame01.Models
+namespace InheritenceMapping
 {
-    public class Student
+    internal class Employee
     {
         public int Id { get; set; }
+        public int? Age { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Coursse> Coursees { get; set; }
+        public string? Address { get; set; }
+
     }
 }
