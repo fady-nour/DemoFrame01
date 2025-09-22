@@ -15,5 +15,7 @@ namespace DemoFrame01.Assignment01
         public string? Name { get; set; }
         public string? Description { get; set; }
         public int Top_ID { get; set; }
+        public ICollection<Stud_Course> Stud_Courses { get; set; } = new List<Stud_Course>();
+        public ICollection<Course_Inst> Course_Instss { get; set; } = new List<Course_Inst>();
     }
 }
