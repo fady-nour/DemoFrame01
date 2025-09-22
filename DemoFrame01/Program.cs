@@ -1,4 +1,5 @@
-﻿using DemoFrame01.Context;
+﻿using DemoFrame01.Assignment01;
+using DemoFrame01.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoFrame01
@@ -7,9 +8,10 @@ namespace DemoFrame01
     {
         static void Main(string[] args)
         {
+            using ComponeyDbcontext dp = new ComponeyDbcontext();//openconnection
             #region demo
 
-           
+
             #region Entitty frame work core
             /*
              ORM => object Rational mapper 
@@ -62,7 +64,7 @@ namespace DemoFrame01
             //dbcontext.Database.Migrate();
             //to apply migeatin must doenload package entity framework
             #endregion
-            #endregion
+
 
             //using ComponeyDbcontext dbcontext = new ComponeyDbcontext();
             #endregion
@@ -79,7 +81,7 @@ namespace DemoFrame01
             #endregion
 
             #region Query object model
-            using ComponeyDbcontext dp = new ComponeyDbcontext();//openconnection
+
             #region Add new record
             //to add data in database
             //connect with database
@@ -141,8 +143,33 @@ namespace DemoFrame01
             #endregion
             #endregion
             #endregion
+            #region Session 3
 
+            #region Eager
+            var students = dp.students
+             .Include(s => s.Departments)                           
+                    .ThenInclude(sc => sc.Instructors)        
+                    .ToList();
+            var student = dp.students.First();
+            Console.WriteLine(student.Departments?.Name);
+            #endregion
 
+            #endregion
+
+            #region Session 4
+            #region Demo
+            #region Lazy loading 
+            /*
+             enable lazy loading
+            1-install packahe microsoft.frameworkcore.proxies
+            2-enable lazy loading in onconfiguring in class dpcontext
+            3-make navigation properity virtual
+             
+             */
+            #endregion
+
+            #endregion
+            #endregion
         }
-    }
+    } 
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DemoFrame01.Assignment01
 {
-    internal class Student
+    public class Student
     {
         [Key]
         public int Id { get; set; }
@@ -18,7 +18,9 @@ namespace DemoFrame01.Assignment01
         [Range(0,120)]
         public int Age { get; set; }
         public int Dep_id { get; set; }
-
+   
+        public Department? Departments { get; set; }
+   
 
     }
 }

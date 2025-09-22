@@ -13,5 +13,9 @@ namespace DemoFrame01.Assignment01
         public int stud_ID { get; set; }
         public int Course_ID { get; set; }
         public int Grade { get; set; }
+ 
+
+        public Instructor? Instructor { get; set; }
+        public Course? Course { get; set; }
     }
 }

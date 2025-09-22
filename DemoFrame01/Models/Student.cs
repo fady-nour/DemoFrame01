@@ -10,6 +10,6 @@ namespace DemoFrame01.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Coursse> Coursees { get; set; }
+        public virtual ICollection<Coursse> Coursees { get; set; }
     }
 }
