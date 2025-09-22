@@ -1,4 +1,10 @@
-﻿namespace InheritenceMapping
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InheritenceMapping
 {
     internal class FullTimeEmployee : Employee
     {

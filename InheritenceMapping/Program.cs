@@ -1,4 +1,5 @@
 ﻿using InheritenceMapping.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace InheritenceMapping
 {
@@ -8,6 +9,7 @@ namespace InheritenceMapping
         {
             #region Session 5
             using CompanyRouteS4 dbc = new CompanyRouteS4();
+
             #region Inheritence mapping
             #region Table per concrete type [TPCT]
             //FullTimeEmployee fullTimeEmployee = new FullTimeEmployee()
@@ -30,15 +32,15 @@ namespace InheritenceMapping
             //dbc.Add(partTimeEmployee);
             //dbc.SaveChanges();
 
-            //var ee=(from e in dbc.FullTimeEmployees
-            //        select e).ToList();
+            //var ee = (from e in dbc.FullTimeEmployees
+            //          select e).ToList();
             //var eee = (from e in dbc.PartTimeEmployees
             //           select e).ToList();
             //Console.WriteLine(ee.Count);
             //Console.WriteLine(eee.Count);
             #endregion
-            #region Table per Hierarchy [TPH]
 
+            #region Table per Hierarchy [TPH]
             //FullTimeEmployee fullTimeEmployee = new FullTimeEmployee()
             //{
             //    Name = "Ahmed",
@@ -63,17 +65,13 @@ namespace InheritenceMapping
             //foreach (var item in emp)
             //{
             //    if (item is FullTimeEmployee)
-            //    {
             //        Console.WriteLine($"FullTimeEmployee: {item.Name}");
-            //    }
             //    else if (item is PartTimeEmployee)
-            //    {
             //        Console.WriteLine($"PartTimeEmployee: {item.Name}");
-            //    }
             //}
             #endregion
-            #region TPT
 
+            #region TPT
             //FullTimeEmployee fullTimeEmployee = new FullTimeEmployee()
             //{
             //    Name = "Ahmed",
@@ -93,42 +91,40 @@ namespace InheritenceMapping
             //dbc.Add(fullTimeEmployee);
             //dbc.Add(partTimeEmployee);
             //dbc.SaveChanges();
-            //var emp = (from e in dbc.Employees
-            //           select e).ToList();
-            //foreach (var item in emp)
-            //{
-            //    Console.WriteLine($"Employee: {item.Name}");
-            //}
 
+            var emp = (from e in dbc.Employees
+                       select e).ToList();
+            foreach (var item in emp)
+            {
+                Console.WriteLine($"Employee: {item.Name}");
+            }
             #endregion
             #endregion
+
             #region Local
             #region Example 1
-            //var res =dbc.Employees.Any(E=>E.Age !=null);
+            //var res = dbc.Employees.Any(E => E.Age != null);
             //Console.WriteLine(res);
-            //var res =dbc.Employees.Local.Any(E=>E.Age !=null);
-            //Console.WriteLine(res);
+            //var res2 = dbc.Employees.Local.Any(E => E.Age != null);
+            //Console.WriteLine(res2);
             #endregion
+
             #region Ex2
-            //var emp =dbc.Employees.First();
-            //if (emp != null)
+            //var emp2 = dbc.Employees.First();
+            //if (emp2 != null)
             //{
-            //    Console.WriteLine(emp.Age);
+            //    Console.WriteLine(emp2.Age);
             //}
-            //var res = dbc.Employees.Local.First(e => e.Age== null);
-            //    Console.WriteLine(res);
+            //var res3 = dbc.Employees.Local.First(e => e.Age == null);
+            //Console.WriteLine(res3);
             //Console.WriteLine("==============");
             //var ress = dbc.Employees.Local.Any();
             //Console.WriteLine(ress);
-
-
-            #endregion
-
-
-
             #endregion
             #endregion
 
+            #endregion
         }
     }
 }
+

@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DemoFrame01": {
+      "commandName": "Project",
+      "jsWebView2Debugging": false,
+      "sqlDebugging": false,
+      "nativeDebugging": false,
+      "remoteDebugEnabled": false
+    }
+  }
+}

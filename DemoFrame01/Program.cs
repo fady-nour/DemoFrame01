@@ -1,5 +1,6 @@
 ﻿using DemoFrame01.Assignment01;
 using DemoFrame01.Context;
+using DemoFrame01.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoFrame01
@@ -8,10 +9,10 @@ namespace DemoFrame01
     {
         static void Main(string[] args)
         {
-            using ComponeyDbcontext dp = new ComponeyDbcontext();//openconnection
-            #region demo
+            using ComponeyDbcontext dbcontext = new ComponeyDbcontext(); // open connection
 
-
+            #region Session 1
+            #region Demo
             #region Entitty frame work core
             /*
              ORM => object Rational mapper 
@@ -24,8 +25,8 @@ namespace DemoFrame01
             perfomance low (auto tracker)
             complexity 
              */
-
             #endregion
+
             #region Ado.net
             /*
              low level framee
@@ -33,143 +34,118 @@ namespace DemoFrame01
             no tacking
             manual connection 
             direct acess with database
-
             disadvantdes
-                 
              */
             #endregion
+
             #region Dapper
             /*
-             * lightwight
+             * lightweight
              * simple api 
              * faster
              * easy to use
              no tracking and migrations
-          micro orm
-            limited features
+             micro orm
+             limited features
             */
             #endregion
-            #region Dbcontext
-            //ComponeyDbcontext componeyDbcontext = new ComponeyDbcontext();
-            //try
-            //{
-
-            //}
-            //finally
-            //{
-            //    componeyDbcontext.Dispose();
-            //}
-
-            //using ComponeyDbcontext dbcontext = new ComponeyDbcontext();
-            //dbcontext.Database.Migrate();
-            //to apply migeatin must doenload package entity framework
+            #endregion
             #endregion
 
-
-            //using ComponeyDbcontext dbcontext = new ComponeyDbcontext();
-            #endregion
             #region Session 2
             #region Demo
             #region Relation between classes
-            /* you can make relation between tow table in three way
-             * 1.navigation
-             * 2.fluent apis
-             * 3.by convention
-             * 
-             * 
-             * */
+            /* you can make relation between two tables in three ways
+             * 1. navigation
+             * 2. fluent apis
+             * 3. by convention
+             */
             #endregion
 
             #region Query object model
 
             #region Add new record
-            //to add data in database
-            //connect with database
-
             //Employee emp01 = new Employee()
             //{
             //    Name = "Fady",
             //    Salary = 10000,
             //    Age = 23
             //};
-            ////by default auto track
-            //dp.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
-            //Console.WriteLine(dp.Entry<Employee>(emp01).State);
-            //dp.Add(emp01);
-            //dp.Set<Employee>().Add(emp01);
-            //dp.Employees.Add(emp01);
-            //Console.WriteLine(dp.Entry<Employee>(emp01).State);
-            //dp.SaveChanges();
-
+            //dbcontext.Employees.Add(emp01);
+            //dbcontext.SaveChanges();
             #endregion
 
-            #region get data from table
-            //    var emp01 = dp.Employees.Where(P => P.Id == 1).FirstOrDefault();
-            //Console.WriteLine(emp01.Id);
-
+            #region Get data from table
+            //var emp01 = dbcontext.Employees.Where(P => P.Id == 1).FirstOrDefault();
+            //Console.WriteLine(emp01?.Id);
             #endregion
 
-            #region update data in table
-            //var emp01 = dp.Employees.Where(P => P.Id == 1).FirstOrDefault();
+            #region Update data in table
+            //var emp01 = dbcontext.Employees.Where(P => P.Id == 1).FirstOrDefault();
             //if (emp01 != null) 
             //{
             //    emp01.Name = "ALI";
-            //    Console.WriteLine(dp.Entry<Employee>(emp01).State);
-            //    dp.SaveChanges();
+            //    dbcontext.SaveChanges();
             //}
-
-
             #endregion
-            #region delete data in table
-            //var emp01 = dp.Employees.Where(P => P.Id == 1).FirstOrDefault();
+
+            #region Delete data in table
+            //var emp01 = dbcontext.Employees.Where(P => P.Id == 1).FirstOrDefault();
             //if (emp01 != null) 
             //{
-            //dp.Employees.Remove(emp01);
-            //    dp.Remove(emp01);
-            //    Console.WriteLine(dp.Entry<Employee>(emp01).State);
-            //    dp.SaveChanges();
+            //    dbcontext.Employees.Remove(emp01);
+            //    dbcontext.SaveChanges();
             //}
-
-
-
-
             #endregion
-
-            #endregion
-
-            #region one to one total to total
-
 
             #endregion
             #endregion
             #endregion
+
             #region Session 3
+            #region Eager Loading
+            var students = dbcontext.students
+                 .Include(s => s.Departments)
+                 .ThenInclude(d => d.Instructors)
+                 .ToList();
 
-            #region Eager
-            var students = dp.students
-             .Include(s => s.Departments)                           
-                    .ThenInclude(sc => sc.Instructors)        
-                    .ToList();
-            var student = dp.students.First();
-            Console.WriteLine(student.Departments?.Name);
+            var student = dbcontext.students.FirstOrDefault();
+            Console.WriteLine(student?.Departments?.Name);
             #endregion
-
             #endregion
 
             #region Session 4
-            #region Demo
             #region Lazy loading 
             /*
              enable lazy loading
-            1-install packahe microsoft.frameworkcore.proxies
-            2-enable lazy loading in onconfiguring in class dpcontext
-            3-make navigation properity virtual
-             
+            1- install package Microsoft.EntityFrameworkCore.Proxies
+            2- enable lazy loading in OnConfiguring in DbContext
+            3- make navigation properties virtual
              */
+
+            //var emp = dbcontext.Employees.FirstOrDefault(e => e.Id == 5);
+            //if (emp != null) 
+            //{
+            //    Console.WriteLine($"emp name {emp.Name}");
+            //    Console.WriteLine($"emp dep name {emp.Manager.DepName}");
+            //}
             #endregion
 
+            #region Joins
+            // Example of Inner Join
+            var res = from d in dbcontext.departments
+                      join e in dbcontext.Employees
+                      on d.ID equals e.Id
+                      select new
+                      {
+                          EmpId = e.Id,
+                          EmpName = e.Name,
+                          DeptId = d.ID,
+                          DeptName = d.Name
+                      };
             #endregion
             #endregion
         }
-    } 
+    }
 }
+
